@@ -1,0 +1,26 @@
+/* USERS PAGE HEADER COMPONENT */
+
+.usersPageHeader {
+    align-items: center;
+    height: 90px;
+    background-color: #f2f2f2;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    position: sticky;
+    top: 0;
+    z-index: 100; 
+}
+
+.backToHomeBtnContainer a,
+.allUsersBtn {
+    text-decoration: none;
+    font-size: 1.1rem;
+    font-weight: 600;
+    color: #2f80ed;
+    letter-spacing: 0.04rem;
+}
+
+.backToHomeBtnContainer a:hover,
+.allUsersBtn:hover {
+    color: #1366d6;
+}

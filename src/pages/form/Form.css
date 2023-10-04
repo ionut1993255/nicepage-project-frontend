@@ -1,0 +1,254 @@
+/* SECTION COMPONENT*/
+
+#form.desktopMode,
+#form.laptopMode,
+#form.tabletMode,
+#form.horizontalPhoneMode,
+#form.phoneMode  {
+    margin:0 auto;    
+}
+
+#form.desktopMode,
+#form.tabletMode,
+#form.horizontalPhoneMode {
+    min-height: 750px;
+}
+
+#form.desktopMode{
+    width:1140px;
+}
+
+#form.laptopMode {
+    width: 979px;
+}
+
+#form.tabletMode {
+    width: 744px;
+}
+
+#form.horizontalPhoneMode {
+    width: 564px;
+}
+
+#form.phoneMode {
+    width: 364px;
+    min-height: 737px;
+}
+
+.people {
+    display: block;
+    margin: 50px auto 0 0;
+    border-radius: 50%;
+    background-image: url('../../images/man-2425121_640.jpg');
+    background-size: cover;
+    background-position: 50% 50%;
+    background-repeat: no-repeat;
+}
+
+label {
+    font-weight: 600;
+}
+
+label,
+form input {
+    font-size: 1.1rem;
+    letter-spacing: 0.04rem;
+}
+
+#form label:not(:last-child) {
+    margin-bottom: 0.2rem;
+}
+
+form input {
+    color: #111111;
+    padding: 10px 12px;
+    background-color: #f2f2f2;
+    border: none;
+    border-radius: 6px;
+    transition: border-color ease-in-out 0.15s, box-shadow ease-in-out 0.15s;  
+}
+
+#consent {
+    width: 0.8rem;
+    margin-right: 0;
+}
+
+.desktopMode form,
+.desktopMode .nameContainer, 
+.desktopMode .emailContainer,
+.desktopMode .imageContainer,
+.desktopMode .consentContainer,
+.laptopMode .imageContainer,
+.tabletMode .nameContainer,
+.tabletMode .emailContainer,
+.tabletMode .imageContainer,
+.tabletMode .consentContainer,
+.horizontalPhoneMode .nameContainer,
+.horizontalPhoneMode .emailContainer,
+.horizontalPhoneMode .imageContainer,
+.horizontalPhoneMode .consentContainer,
+.phoneMode .nameContainer,
+.phoneMode .emailContainer,
+.phoneMode .imageContainer,
+.phoneMode .consentContainer
+ {
+    display:flex;
+}
+
+.desktopMode form,
+.desktopMode .nameContainer, 
+.desktopMode .emailContainer,
+.desktopMode .imageContainer,
+.laptopMode .imageContainer,
+.tabletMode .nameContainer,
+.tabletMode .emailContainer,
+.tabletMode .imageContainer,
+.horizontalPhoneMode .nameContainer,
+.horizontalPhoneMode .emailContainer,
+.horizontalPhoneMode .imageContainer,
+.phoneMode .nameContainer,
+.phoneMode .emailContainer,
+.phoneMode .imageContainer {
+    flex-direction: column;
+}
+
+.desktopMode .consentContainer,
+.tabletMode .consentContainer,
+.horizontalPhoneMode .consentContainer,
+.phoneMode .consentContainer {
+    align-items: center;
+}
+
+.desktopMode form,
+.desktopMode .consentContainer,
+.desktopMode .submitContainer {
+    width:696px;
+}
+
+.desktopMode form {
+    align-items: flex-start;
+    margin: -179px 0 0 435px;
+    padding: 10px;
+}
+
+.desktopMode .nameContainer, 
+.desktopMode .emailContainer, 
+.desktopMode .consentContainer {
+    margin-bottom:20px;
+}
+
+.desktopMode form input
+{
+    width: 672px;
+} 
+
+.desktopMode .consentContainer
+ {
+    margin-top:20px;
+}
+
+.desktopMode label[for="consent"] {
+    margin-left: 0.5rem;
+}
+
+.desktopMode #consent,
+.laptopMode  #consent,
+.tabletMode  #consent,
+.horizontalPhoneMode #consent,
+.phoneMode #consent {
+    margin-left: 0;
+}
+
+.laptopMode #consent,
+.tabletMode #consent,
+.horizontalPhoneMode #consent,
+.phoneMode #consent {
+    margin-right: 0.5rem;
+}
+
+.laptopMode #name,
+.laptopMode #email,
+.laptopMode #image {
+    width: 955px;
+}
+
+#form.laptopMode #name,
+#form.laptopMode #email
+ {
+    margin-top: 0.2rem; 
+}
+
+
+.laptopMode .nameContainer,
+.laptopMode .emailContainer,
+.laptopMode .imageContainer,
+.laptopMode .consentContainer,
+.tabletMode .nameContainer,
+.tabletMode .emailContainer,
+.tabletMode .imageContainer,
+.tabletMode .consentContainer,
+.horizontalPhoneMode .nameContainer,
+.horizontalPhoneMode .emailContainer,
+.horizontalPhoneMode .imageContainer,
+.horizontalPhoneMode .consentContainer,
+.phoneMode .nameContainer,
+.phoneMode .emailContainer,
+.phoneMode .imageContainer, 
+.phoneMode .consentContainer
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.laptopMode  .submitContainer,
+.tabletMode .submitContainer,
+.horizontalPhoneMode .submitContainer {
+    margin-bottom:2.8rem;
+} 
+
+.phoneMode .people {
+    margin: 50px auto 0;
+    width: 320px;
+}
+
+.desktopMode input::placeholder, 
+.laptopMode input::placeholder, 
+.tabletMode input::placeholder,
+.horizontalPhoneMode input::placeholder,
+.phoneMode input::placeholder {
+    color: rgb(165, 164, 164);
+    letter-spacing: 0.04rem;
+}
+
+.desktopMode label[for="consent"] a,
+.laptopMode label[for="consent"] a,
+.tabletMode label[for="consent"] a,
+.horizontalPhoneMode label[for="consent"] a,
+.phoneMode label[for="consent"] a{
+    text-decoration: none;
+    color:#2f80ed;
+}
+
+.desktopMode label[for="consent"] a:hover, 
+.laptopMode label[for="consent"] a:hover,
+.tabletMode label[for="consent"] a:hover,
+.horizontalPhoneMode label[for="consent"] a:hover,
+.phoneMode label[for="consent"] a:hover
+ {
+    color: #1366d6;
+}
+
+
+
+
+
+
+
+
+
+
+      
+
+       
+
+       
