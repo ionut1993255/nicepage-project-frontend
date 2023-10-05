@@ -19,16 +19,15 @@
 }
 
 .container {
-    grid-template-columns: repeat(4, auto);
-    margin: 1.3em; 
-    gap: 1.58em;
+    grid-template-columns: repeat(4, 25%);
+    margin: 1.35rem 0.37rem 0.48rem 0.37rem;
 }
 
 .card {
-    width: auto;
     overflow: hidden;
     border-radius: 6px;
     box-shadow: 0.25rem 0.25rem 0.5rem rgba(0, 0, 0, 0.25);
+    margin: 0 auto;
 }
 
 .card > * {
@@ -125,7 +124,19 @@ p.card-description,
     .card-background {
         width: 450.63px;
         height: 400px;
+        margin-bottom: 1.3em;
+    }
+
+    .container {
+        margin: 1.35rem 0.37rem 0 0.37rem;
     }
 }
 
-
+@media (max-width:1549px) {
+    .card,
+    .card-background {
+        width: 364px;
+        height: 400px;
+        margin-bottom: 0.9rem;
+    }
+}

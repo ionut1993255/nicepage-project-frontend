@@ -45,9 +45,7 @@ function User() {
                 <img
                   className="card-background"
                   src={`http://127.0.0.1:8000/storage/${user.image}`}
-                  alt="user"
-                  width="354.64px"
-                  height="400px"
+                  alt="people"
                 />
                 <div className="card-content">
                   <div className="card-content--container">
