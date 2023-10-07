@@ -5,7 +5,7 @@ import "./AddUserButton.css";
 function AddUserButton() {
   return (
     <div className="addUserBtnContainer">
-      <Link to="/">Add User</Link>
+      <Link to="/add-user">Add User</Link>
     </div>
   );
 }

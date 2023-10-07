@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import UsersPageHeader from "../../components/headers/users-page-header/UsersPageHeader";
-import "./User.css";
+import "./AllUsers.css";
 
-function User() {
+function AllUsers() {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
 
@@ -70,4 +70,4 @@ function User() {
   );
 }
 
-export default User;
+export default AllUsers;

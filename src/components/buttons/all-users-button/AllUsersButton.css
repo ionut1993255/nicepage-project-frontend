@@ -1,0 +1,23 @@
+/* ALL USERS BUTTON COMPONENT */
+
+.allUsersBtnContainer {
+    margin: 0 auto;
+}
+
+.allUsersBtnContainer a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1.1rem;
+    letter-spacing: 0.04rem;
+    background-color: #2f80ed;
+    color: #fff;
+    line-height: 1.5;
+    padding: 10px 25px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.allUsersBtnContainer a:hover {
+  background-color: #1366d6;
+  box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
+}

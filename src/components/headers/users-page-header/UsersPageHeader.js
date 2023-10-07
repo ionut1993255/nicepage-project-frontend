@@ -10,9 +10,6 @@ function UsersPageHeader() {
         <Link to="/">&larr; Home</Link>
       </div>
       <AddUserButton />
-      <Link to="/users" className="allUsersBtn">
-        All Users &rarr;
-      </Link>
     </div>
   );
 }

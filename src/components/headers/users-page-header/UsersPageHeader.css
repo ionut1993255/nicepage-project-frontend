@@ -11,8 +11,7 @@
     z-index: 100; 
 }
 
-.backToHomeBtnContainer a,
-.allUsersBtn {
+.backToHomeBtnContainer a {
     text-decoration: none;
     font-size: 1.1rem;
     font-weight: 600;
@@ -20,7 +19,6 @@
     letter-spacing: 0.04rem;
 }
 
-.backToHomeBtnContainer a:hover,
-.allUsersBtn:hover {
+.backToHomeBtnContainer a:hover {
     color: #1366d6;
 }

@@ -1,0 +1,54 @@
+/* FORM HEADER COMPONENT */
+
+header,
+.previewResponsiveContainerBtns {
+    display: flex;
+    align-items: center;
+}
+
+header {
+    height: 90px;
+    background-color: #f2f2f2;
+    padding-left: 0.6rem;
+    padding-right: 0.6rem;
+    position: sticky;
+    top: 0;
+    z-index: 100; 
+}
+
+.previewResponsiveContainerBtns {
+    margin: 0 auto; 
+    gap: 0.7rem;
+}
+
+.previewResponsiveContainerBtns a,
+.homePage, .usersPage{
+    text-decoration: none;
+}
+
+.btn {
+    padding: 4px 4px 0.2px 4px;
+    transition: background-color 0.3s, padding 0.3s;
+}
+
+.btn.active {
+    background: #c9e4f9;
+    padding: 4px 4px 0.2px 4px;
+}
+
+.btn:not(.active):hover {
+    background: #e2f0fc;
+}
+
+.homePage, .usersPage {
+    margin: 0.6rem;
+    color: #2f80ed;
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04rem;
+}
+
+.homePage:hover, 
+.usersPage:hover {
+    color: #1366d6;
+}
