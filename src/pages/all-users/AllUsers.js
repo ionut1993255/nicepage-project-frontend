@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
 import UsersPageHeader from "../../components/headers/users-page-header/UsersPageHeader";
+import Footer from "../../components/footer/Footer";
 import "./AllUsers.css";
 
 function AllUsers() {
@@ -33,39 +34,44 @@ function AllUsers() {
   }, []);
 
   return (
-    <div>
-      <UsersPageHeader />
-      {loading ? (
-        <p className="load">Loading...</p>
-      ) : (
-        <div className="container">
-          {userData.length > 0 ? (
-            userData.map((user) => (
-              <div key={user.id} className="card">
-                <img
-                  className="card-background"
-                  src={`http://127.0.0.1:8000/storage/${user.image}`}
-                  alt="people"
-                />
-                <div className="card-content">
-                  <div className="card-content--container">
-                    <p className="card-description">Id: {user.id}</p>
-                    <p className="card-description">Name: {user.name}</p>
-                    <p className="card-description">Email: {user.email}</p>
-                    <p className="card-description">
-                      Consent: {user.consent === 1 ? "True" : "False"}
-                    </p>
+    <div
+      style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
+    >
+      <div style={{ flex: "1" }}>
+        <UsersPageHeader />
+        {loading ? (
+          <p className="load">Loading...</p>
+        ) : (
+          <div className="container">
+            {userData.length > 0 ? (
+              userData.map((user) => (
+                <div key={user.id} className="card">
+                  <img
+                    className="card-background"
+                    src={`http://127.0.0.1:8000/storage/${user.image}`}
+                    alt="people"
+                  />
+                  <div className="card-content">
+                    <div className="card-content--container">
+                      <p className="card-description">Id: {user.id}</p>
+                      <p className="card-description">Name: {user.name}</p>
+                      <p className="card-description">Email: {user.email}</p>
+                      <p className="card-description">
+                        Consent: {user.consent === 1 ? "True" : "False"}
+                      </p>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))
-          ) : (
-            <p className="noUserFoundMessage">
-              No user found! Maybe you would like to add one?
-            </p>
-          )}
-        </div>
-      )}
+              ))
+            ) : (
+              <p className="noUserFoundMessage">
+                No user found! Maybe you would like to add one?
+              </p>
+            )}
+          </div>
+        )}
+      </div>
+      <Footer style={{ marginTop: "auto" }} />
     </div>
   );
 }
