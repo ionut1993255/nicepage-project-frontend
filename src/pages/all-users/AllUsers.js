@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import UsersPageHeader from "../../components/headers/users-page-header/UsersPageHeader";
+import UpdateUserButton from "../../components/buttons/update-user-button/UpdateUserButton";
+import DeleteUserButton from "../../components/buttons/delete-user-button/DeleteUserButton";
 import Footer from "../../components/footer/Footer";
 import "./AllUsers.css";
 
@@ -53,12 +55,23 @@ function AllUsers() {
                   />
                   <div className="card-content">
                     <div className="card-content--container">
-                      <p className="card-description">Id: {user.id}</p>
-                      <p className="card-description">Name: {user.name}</p>
-                      <p className="card-description">Email: {user.email}</p>
                       <p className="card-description">
-                        Consent: {user.consent === 1 ? "True" : "False"}
+                        Id: <span>{user.id}</span>
                       </p>
+                      <p className="card-description">
+                        Name: <span>{user.name}</span>
+                      </p>
+                      <p className="card-description">
+                        Email: <span>{user.email}</span>
+                      </p>
+                      <p className="card-description">
+                        Consent:{" "}
+                        <span>{user.consent === 1 ? "True" : "False"}</span>
+                      </p>
+                      <div className="updateDeleteBtnContainer">
+                        <UpdateUserButton user={user} />
+                        <DeleteUserButton />
+                      </div>
                     </div>
                   </div>
                 </div>

@@ -1,0 +1,25 @@
+/* UPDATE USER BUTTON FORM COMPONENT*/
+
+.desktopMode .btnUpdate,
+.laptopMode .btnUpdate,
+.tabletMode .btnUpdate,
+.horizontalPhoneMode .btnUpdate,
+.phoneMode .btnUpdate {
+    width: 113px;
+    padding: 10px 25px;
+    background-color: #2f80ed;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 6px;
+    font-weight: 600;
+    font-size:1.1rem;
+}
+
+.laptopMode .btnUpdate:hover,
+.desktopMode .btnUpdate:hover,
+.tabletMode .btnUpdate:hover,
+.horizontalPhoneMode .btnUpdate:hover,
+.phoneMode .btnUpdate:hover {
+    background-color: #1366d6;
+    box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
+}

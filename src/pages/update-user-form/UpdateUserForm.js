@@ -1,24 +1,41 @@
-import React, { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import React, { useState, useEffect } from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import FormHeader from "../../components/headers/form-header/FormHeader";
 import manImage from "../../images/man-2425121_640.jpg";
-import ButtonSubmit from "../../components/buttons/button-submit/ButtonSubmit";
+import UpdateUserButtonForm from "../../components/buttons/update-user-button-form/UpdateUserButtonForm";
 import Footer from "../../components/footer/Footer";
 import axios from "axios";
-import "./AddUserForm.css";
+import "./UpdateUserForm.css";
 
-function AddUserForm() {
+function UpdateUserForm() {
   const navigate = useNavigate();
+
+  const { id } = useParams();
 
   const [selectedType, setSelectedType] = useState("desktopMode");
   const [selectedFile, setSelectedFile] = useState(null);
   const [selectedFileValue, setSelectedFileValue] = useState("");
+  const [isNewFileSelected, setIsNewFileSelected] = useState(false);
   const [user, setUser] = useState({
     name: "",
     email: "",
     image: "",
     consent: false,
   });
+
+  const getImageWidth = () => {
+    const smallScreenMaxWidth = 1549;
+
+    const screenWidth =
+      window.innerWidth || document.documentElement.clientWidth;
+
+    if (screenWidth <= smallScreenMaxWidth) {
+      return 364;
+    }
+    return 450.63;
+  };
+
+  const imageWidth = getImageWidth();
 
   const handleInput = (e) => {
     e.persist();
@@ -35,6 +52,12 @@ function AddUserForm() {
     setUser({ ...user, [e.target.name]: value });
   };
 
+  useEffect(() => {
+    axios.get(`http://127.0.0.1:8000/api/users/${id}`).then((res) => {
+      setUser(res.data.user);
+    });
+  }, [id]);
+
   const saveUser = (e) => {
     e.preventDefault();
 
@@ -49,6 +72,7 @@ function AddUserForm() {
     }
 
     const formData = new FormData();
+    formData.append("_method", "PUT");
     formData.append("name", user.name);
     formData.append("email", user.email);
     formData.append("image", selectedFile);
@@ -62,7 +86,7 @@ function AddUserForm() {
     };
 
     axios
-      .post("http://127.0.0.1:8000/api/users/", formData, config)
+      .post(`http://127.0.0.1:8000/api/users/${id}/update`, formData, config)
       .then((res) => {
         alert(res.data.message);
         navigate("/users");
@@ -103,24 +127,48 @@ function AddUserForm() {
 
             <div className="imageContainer">
               <label htmlFor="image">Upload an image</label>
-              <input
-                type="file"
-                name="image"
-                value={selectedFileValue}
-                id="image"
-                accept="image/*"
-                onChange={(e) => {
-                  setSelectedFileValue(e.target.value);
-                  setSelectedFile(e.target.files[0]);
-                }}
-              />
+              <div className="imgBackendContainer">
+                {isNewFileSelected ? (
+                  <img
+                    src={selectedFileValue && URL.createObjectURL(selectedFile)}
+                    alt="people"
+                    className="imgBackend"
+                    style={{ width: `${imageWidth}px`, objectFit: "cover" }}
+                    height={400}
+                  />
+                ) : (
+                  <img
+                    src={
+                      user.image
+                        ? `http://127.0.0.1:8000/storage/${user.image}`
+                        : ""
+                    }
+                    alt="people"
+                    className="imgBackend"
+                    style={{ width: `${imageWidth}px`, objectFit: "cover" }}
+                    height={400}
+                  />
+                )}
+                <input
+                  type="file"
+                  name="image"
+                  value={selectedFileValue}
+                  id="image"
+                  accept="image/*"
+                  onChange={(e) => {
+                    setSelectedFileValue(e.target.value);
+                    setSelectedFile(e.target.files[0]);
+                    setIsNewFileSelected(true);
+                  }}
+                />
+              </div>
             </div>
 
             <div className="consentContainer">
               <input
                 type="checkbox"
                 name="consent"
-                value={user.consent}
+                checked={user.consent}
                 id="consent"
                 onChange={handleInput}
               />
@@ -128,7 +176,7 @@ function AddUserForm() {
                 I accept the <Link to="#">Terms of Service</Link>
               </label>
             </div>
-            <ButtonSubmit />
+            <UpdateUserButtonForm />
           </form>
         </div>
       </section>
@@ -137,4 +185,4 @@ function AddUserForm() {
   );
 }
 
-export default AddUserForm;
+export default UpdateUserForm;

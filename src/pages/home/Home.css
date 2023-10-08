@@ -25,7 +25,7 @@
 }
 
 .homeTitle span {
-    color:orangered;
+    color:white;
     font-style: italic;
-    text-shadow: #FC0 1px 0 10px;
+    text-shadow: 0 0 0.2em #1366d6, 0 0 0.2em #1366d6;
 }

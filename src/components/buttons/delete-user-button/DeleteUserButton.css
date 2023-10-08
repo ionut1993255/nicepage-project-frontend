@@ -1,0 +1,19 @@
+/* DELETE USER BUTTON COMPONENT */
+
+.deleteUserBtnContainer a{
+    text-decoration: none;
+    font-weight: 600;
+    font-size: 1rem;
+    letter-spacing: 0.04rem;
+    background-color: red;
+    color: #fff;
+    line-height: 1.5;
+    padding: 5px 10px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.deleteUserBtnContainer a:hover {
+    background-color: #bc0404;
+    box-shadow: #1367d60f 0 5px 30px, #1367d60f 0 1px 4px;
+}

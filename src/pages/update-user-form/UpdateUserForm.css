@@ -1,4 +1,4 @@
-/* ADD USER FORM COMPONENT*/
+/* UPDATE USER FORM COMPONENT*/
 
 #form.desktopMode,
 #form.laptopMode,
@@ -59,6 +59,11 @@ form input {
     margin-bottom: 0.2rem;
 }
 
+form input, 
+.imgBackend {
+    border-radius: 6px;
+}
+
 form input {
     color: #111111;
     padding: 10px 12px;
@@ -82,6 +87,7 @@ form input {
 .tabletMode .nameContainer,
 .tabletMode .emailContainer,
 .tabletMode .imageContainer,
+.tabletMode .imgBackendContainer,
 .tabletMode .consentContainer,
 .horizontalPhoneMode .nameContainer,
 .horizontalPhoneMode .emailContainer,
@@ -103,6 +109,7 @@ form input {
 .tabletMode .nameContainer,
 .tabletMode .emailContainer,
 .tabletMode .imageContainer,
+.tabletMode .imgBackendContainer, 
 .horizontalPhoneMode .nameContainer,
 .horizontalPhoneMode .emailContainer,
 .horizontalPhoneMode .imageContainer,
@@ -121,7 +128,7 @@ form input {
 
 .desktopMode form,
 .desktopMode .consentContainer,
-.desktopMode .submitContainer {
+.desktopMode .updateUserBtnFormContainer {
     width:696px;
 }
 
@@ -178,7 +185,6 @@ form input {
     margin-top: 0.2rem; 
 }
 
-
 .laptopMode .nameContainer,
 .laptopMode .emailContainer,
 .laptopMode .imageContainer,
@@ -200,15 +206,29 @@ form input {
     margin-bottom: 20px;
 }
 
-.laptopMode .submitContainer,
-.tabletMode .submitContainer,
-.horizontalPhoneMode .submitContainer {
+.desktopMode .updateUserBtnFormContainer,
+.laptopMode .updateUserBtnFormContainer,
+.tabletMode .updateUserBtnFormContainer,
+.horizontalPhoneMode .updateUserBtnFormContainer,
+.phoneMode .updateUserBtnFormContainer {
     margin-bottom:2.8rem;
 } 
+
+.tabletMode #image {
+    width: 720px;
+}
+
+.horizontalPhoneMode #image {
+    width: 540px;
+}
 
 .phoneMode .people {
     margin: 50px auto 0;
     width: 320px;
+}
+
+.phoneMode #image {
+    width: 340px;
 }
 
 .desktopMode input::placeholder, 
@@ -238,6 +258,33 @@ form input {
     color: #1366d6;
 }
 
+.imgBackend
+ {
+    margin: 0.5rem 0;
+}
+
+.phoneMode .imgBackend {
+    width: 320px !important;
+    height: 320px !important;
+}
+
+
+
+@media (max-width:1549px) {
+    .card,
+    .card-background {
+        width: 364px;
+        height: 400px;
+    }
+}
+
+@media (min-width:1550px) {
+    .card,
+    .card-background {
+        width: 450.63px;
+        height: 400px;
+    }
+}
 
 
 
