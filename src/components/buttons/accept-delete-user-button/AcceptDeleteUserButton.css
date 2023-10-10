@@ -1,0 +1,18 @@
+/* ACCEPT DELETE USER BUTTON COMPONENT */
+
+.acceptDeleteUserBtnContainer a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 0.04rem;
+    background-color: red;
+    color: #fff;
+    line-height: 1.5;
+    padding: 7px 14px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.acceptDeleteUserBtnContainer a:hover {
+  background-color: #bc0404;
+  box-shadow: #1367d60f 0 5px 30px, #1367d60f 0 1px 4px;
+}

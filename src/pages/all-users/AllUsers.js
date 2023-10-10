@@ -2,12 +2,18 @@ import React, { useEffect, useState } from "react";
 import UsersPageHeader from "../../components/headers/users-page-header/UsersPageHeader";
 import UpdateUserButton from "../../components/buttons/update-user-button/UpdateUserButton";
 import DeleteUserButton from "../../components/buttons/delete-user-button/DeleteUserButton";
+import Overlay from "../../components/overlay/Overlay";
+import Modal from "../../components/modal/Modal";
 import Footer from "../../components/footer/Footer";
+import axios from "axios";
 import "./AllUsers.css";
 
 function AllUsers() {
   const [userData, setUserData] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [showOverlay, setShowOverlay] = useState(false);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedUserId, setSelectedUserId] = useState(null);
 
   useEffect(() => {
     fetch("http://127.0.0.1:8000/api/users")
@@ -34,6 +40,24 @@ function AllUsers() {
         setLoading(false);
       });
   }, []);
+
+  function deleteUser(id) {
+    axios.delete(`http://127.0.0.1:8000/api/users/${id}/delete`).then((res) => {
+      alert(res.data.message);
+      hideModalAndOverlay();
+    });
+  }
+
+  function displayModalAndOverlay(userId) {
+    setSelectedUserId(userId);
+    setShowOverlay(true);
+    setShowModal(true);
+  }
+
+  function hideModalAndOverlay() {
+    setShowModal(false);
+    setShowOverlay(false);
+  }
 
   return (
     <div
@@ -70,7 +94,9 @@ function AllUsers() {
                       </p>
                       <div className="updateDeleteBtnContainer">
                         <UpdateUserButton user={user} />
-                        <DeleteUserButton />
+                        <DeleteUserButton
+                          onClick={() => displayModalAndOverlay(user.id)}
+                        />
                       </div>
                     </div>
                   </div>
@@ -84,6 +110,16 @@ function AllUsers() {
           </div>
         )}
       </div>
+      {showOverlay ? <Overlay /> : false}
+      {showModal ? (
+        <Modal
+          onClose={hideModalAndOverlay}
+          onClick={() => deleteUser(selectedUserId)}
+        />
+      ) : (
+        false
+      )}
+
       <Footer style={{ marginTop: "auto" }} />
     </div>
   );

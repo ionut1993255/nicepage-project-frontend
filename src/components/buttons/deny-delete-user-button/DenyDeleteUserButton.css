@@ -1,0 +1,18 @@
+/* DENY DELETE USER BUTTON COMPONENT */
+
+.denyDeleteUserBtnContainer a{
+    text-decoration: none;
+    font-size: 1.2rem;
+    letter-spacing: 0.04rem;
+    background-color: rgb(69, 69, 69);
+    color: #fff;
+    line-height: 1.5;
+    padding: 7px 14px;
+    text-align: center;
+    border-radius: 6px;
+}
+
+.denyDeleteUserBtnContainer a:hover {
+  background-color: rgb(49, 48, 48);
+  box-shadow: #1367d60f 0 5px 30px, #1367d60f 0 1px 4px;
+}
