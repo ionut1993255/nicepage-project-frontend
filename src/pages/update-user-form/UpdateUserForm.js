@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
 import FormHeader from "../../components/headers/form-header/FormHeader";
-import manImage from "../../images/man-2425121_640.jpg";
+import manImage from "../../images/people.jpg";
 import UpdateUserButtonForm from "../../components/buttons/update-user-button-form/UpdateUserButtonForm";
 import Footer from "../../components/footer/Footer";
-import axios from "axios";
 import "./UpdateUserForm.css";
 
 function UpdateUserForm() {
@@ -20,7 +21,7 @@ function UpdateUserForm() {
     name: "",
     email: "",
     image: "",
-    consent: false,
+    consent: 0,
   });
 
   const getImageWidth = () => {
@@ -53,21 +54,19 @@ function UpdateUserForm() {
   };
 
   useEffect(() => {
-    axios.get(`http://127.0.0.1:8000/api/users/${id}`).then((res) => {
-      setUser(res.data.user);
-    });
+    axios
+      .get(`http://127.0.0.1:8000/api/users/${id}`)
+      .then((res) => {
+        setUser(res.data.user);
+      })
+      .catch((err) => toast.error(err.response.data.message));
   }, [id]);
 
   const saveUser = (e) => {
     e.preventDefault();
 
-    if (
-      user.name === "" ||
-      user.email === "" ||
-      !selectedFile ||
-      !user.consent
-    ) {
-      alert("Please fill in all fields and accept the Terms of Service!");
+    if (user.name === "" || user.email === "" || !selectedFile) {
+      toast.error("Please fill in all fields and accept the Terms of Service!");
       return;
     }
 
@@ -88,10 +87,18 @@ function UpdateUserForm() {
     axios
       .post(`http://127.0.0.1:8000/api/users/${id}/update`, formData, config)
       .then((res) => {
-        alert(res.data.message);
+        toast.success(res.data.message);
         navigate("/users");
       })
-      .catch((err) => console.error("Error:", err.message));
+      .catch((err) => {
+        switch (err.response.data.status) {
+          case 400:
+            toast.error(err.response.data.errors);
+            break;
+          default:
+            toast.error(err);
+        }
+      });
   };
 
   return (
@@ -136,7 +143,7 @@ function UpdateUserForm() {
                     style={{ width: `${imageWidth}px`, objectFit: "cover" }}
                     height={400}
                   />
-                ) : (
+                ) : user.image ? (
                   <img
                     src={
                       user.image
@@ -148,7 +155,7 @@ function UpdateUserForm() {
                     style={{ width: `${imageWidth}px`, objectFit: "cover" }}
                     height={400}
                   />
-                )}
+                ) : null}
                 <input
                   type="file"
                   name="image"

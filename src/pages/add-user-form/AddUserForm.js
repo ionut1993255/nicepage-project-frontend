@@ -1,10 +1,11 @@
 import React, { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from "axios";
 import FormHeader from "../../components/headers/form-header/FormHeader";
-import manImage from "../../images/man-2425121_640.jpg";
+import manImage from "../../images/people.jpg";
 import ButtonSubmit from "../../components/buttons/button-submit/ButtonSubmit";
 import Footer from "../../components/footer/Footer";
-import axios from "axios";
 import "./AddUserForm.css";
 
 function AddUserForm() {
@@ -17,7 +18,7 @@ function AddUserForm() {
     name: "",
     email: "",
     image: "",
-    consent: false,
+    consent: 0,
   });
 
   const handleInput = (e) => {
@@ -38,13 +39,8 @@ function AddUserForm() {
   const saveUser = (e) => {
     e.preventDefault();
 
-    if (
-      user.name === "" ||
-      user.email === "" ||
-      !selectedFile ||
-      !user.consent
-    ) {
-      alert("Please fill in all fields and accept the Terms of Service!");
+    if (user.name === "" || user.email === "" || !selectedFile) {
+      toast.error("Please fill in all fields and accept the Terms of Service!");
       return;
     }
 
@@ -64,10 +60,18 @@ function AddUserForm() {
     axios
       .post("http://127.0.0.1:8000/api/users/", formData, config)
       .then((res) => {
-        alert(res.data.message);
+        toast.success(res.data.message);
         navigate("/users");
       })
-      .catch((err) => console.error("Error:", err.message));
+      .catch((err) => {
+        switch (err.response.data.status) {
+          case 400:
+            toast.error(err.response.data.errors);
+            break;
+          default:
+            toast.error(err);
+        }
+      });
   };
 
   return (

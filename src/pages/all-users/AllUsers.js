@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
+import toast from "react-hot-toast";
+import axios from "axios";
 import UsersPageHeader from "../../components/headers/users-page-header/UsersPageHeader";
 import UpdateUserButton from "../../components/buttons/update-user-button/UpdateUserButton";
 import DeleteUserButton from "../../components/buttons/delete-user-button/DeleteUserButton";
 import Overlay from "../../components/overlay/Overlay";
 import Modal from "../../components/modal/Modal";
 import Footer from "../../components/footer/Footer";
-import axios from "axios";
 import "./AllUsers.css";
 
 function AllUsers() {
@@ -28,7 +29,7 @@ function AllUsers() {
           setUserData(data.users);
         } else {
           console.error(
-            "Invalid data format. Expected an array but received:",
+            "Invalid data format! Expected an array but received:",
             data
           );
         }
@@ -42,10 +43,13 @@ function AllUsers() {
   }, []);
 
   function deleteUser(id) {
-    axios.delete(`http://127.0.0.1:8000/api/users/${id}/delete`).then((res) => {
-      alert(res.data.message);
-      hideModalAndOverlay();
-    });
+    axios
+      .delete(`http://127.0.0.1:8000/api/users/${id}/delete`)
+      .then((res) => {
+        toast.success(res.data.message);
+        hideModalAndOverlay();
+      })
+      .catch((err) => toast.error(err));
   }
 
   function displayModalAndOverlay(userId) {

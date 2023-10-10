@@ -1,23 +1,59 @@
 /* ALL USERS BUTTON COMPONENT */
 
-.allUsersBtnContainer {
-    margin: 0 auto;
+.allUsersBtnContainer a{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
 }
 
 .allUsersBtnContainer a{
-    text-decoration: none;
-    font-weight: 600;
-    font-size: 1.1rem;
-    letter-spacing: 0.04rem;
-    background-color: #2f80ed;
-    color: #fff;
-    line-height: 1.5;
-    padding: 10px 25px;
-    text-align: center;
-    border-radius: 6px;
+  display: block;
+  padding: 10px 25px;
+  text-decoration: none;
+  text-align: center;
+  border-radius: 6px;
+  color: orangered;
+  background: white;
+  box-shadow: 0 0 0.2em orangered, 0 0 0.2em orangered;
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.04rem;
+  position: relative;
+  overflow: hidden;
 }
 
-.allUsersBtnContainer a:hover {
-  background-color: #1366d6;
-  box-shadow: rgba(0, 0, 0, .05) 0 5px 30px, rgba(0, 0, 0, .05) 0 1px 4px;
+.allUsersBtnContainer a:before{
+  opacity: .5;
+}
+
+.allUsersBtnContainer a:after{
+  transition-delay: .2s;
+}
+
+.allUsersBtnContainer a:before,
+.allUsersBtnContainer a:after{
+  position: absolute;
+  content: "";
+  width: 100%;
+  height: 100%;
+  top: -100%;
+  left: 0;
+  background: orangered;
+  z-index: -1;
+}
+
+.allUsersBtnContainer a, 
+.allUsersBtnContainer a:before,
+.allUsersBtnContainer a:after {
+  transition: all .35s;
+}
+
+.allUsersBtnContainer a:hover{
+  color: #fff;
+}
+
+.allUsersBtnContainer a:hover:before,
+.allUsersBtnContainer a:hover:after{
+  top: 0;
 }

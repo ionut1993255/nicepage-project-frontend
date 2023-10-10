@@ -15,17 +15,20 @@
     align-items: center;
     justify-content: center;
     margin: auto;
-    background-color: rgb(229, 232, 232);
     width: 100%;
+    background-image: url('../../images/technology.png');
+    background-size: cover; 
+    background-position: center;
+    background-repeat: no-repeat;
 }
 
 .homeTitle {
-    font-size: 3rem;
-    color: #2f80ed;
+    font-size: 4rem;
+    color: orangered;
 }
 
 .homeTitle span {
     color:white;
     font-style: italic;
-    text-shadow: 0 0 0.2em #1366d6, 0 0 0.2em #1366d6;
+    text-shadow: 0 0 0.2em orangered, 0 0 0.2em orangered;
 }
