@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { downloadExcel } from "react-export-table-to-excel";
 import UsersPageHeader from "../../components/headers/users-page-header/UsersPageHeader";
 import UpdateUserButton from "../../components/buttons/update-user-button/UpdateUserButton";
 import DeleteUserButton from "../../components/buttons/delete-user-button/DeleteUserButton";
@@ -63,12 +64,38 @@ function AllUsers() {
     setShowOverlay(false);
   }
 
+  function handleDownloadExcel() {
+    if (userData.length === 0) {
+      toast.error("No data to export! Please add a user!");
+      return;
+    }
+
+    const header = ["Id", "Name", "Email", "Image", "Consent"];
+    const body = userData.map((user) => [
+      user.id,
+      user.name,
+      user.email,
+      `http://127.0.0.1:8000/storage/${user.image}`,
+      user.consent === 1 ? "True" : "False",
+    ]);
+
+    downloadExcel({
+      fileName: "user_data",
+      sheet: "users",
+      tablePayload: {
+        header,
+        body,
+      },
+    });
+    toast.success("Data exported successfully!");
+  }
+
   return (
     <div
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
     >
       <div style={{ flex: "1" }}>
-        <UsersPageHeader />
+        <UsersPageHeader handleDownloadExcel={handleDownloadExcel} />
         {loading ? (
           <p className="load">Loading...</p>
         ) : (
@@ -114,15 +141,13 @@ function AllUsers() {
           </div>
         )}
       </div>
-      {showOverlay ? <Overlay /> : false}
+      {showOverlay ? <Overlay /> : null}
       {showModal ? (
         <Modal
           onClose={hideModalAndOverlay}
           onClick={() => deleteUser(selectedUserId)}
         />
-      ) : (
-        false
-      )}
+      ) : null}
 
       <Footer style={{ marginTop: "auto" }} />
     </div>
