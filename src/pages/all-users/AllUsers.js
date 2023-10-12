@@ -7,6 +7,7 @@ import UpdateUserButton from "../../components/buttons/update-user-button/Update
 import DeleteUserButton from "../../components/buttons/delete-user-button/DeleteUserButton";
 import Overlay from "../../components/overlay/Overlay";
 import Modal from "../../components/modal/Modal";
+import Pagination from "../../components/pagination/Pagination";
 import Footer from "../../components/footer/Footer";
 import "./AllUsers.css";
 
@@ -16,9 +17,18 @@ function AllUsers() {
   const [showOverlay, setShowOverlay] = useState(false);
   const [showModal, setShowModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+
+  const usersPerPage = 8;
+  const indexOfLastUser = currentPage * usersPerPage;
+  const indexOfFirstUser = indexOfLastUser - usersPerPage;
+  const currentUsers = userData.slice(indexOfFirstUser, indexOfLastUser);
+  const totalPages = Math.ceil(userData.length / usersPerPage);
 
   useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/users")
+    fetch(
+      `http://127.0.0.1:8000/api/users?page=${currentPage}&perPage=${usersPerPage}`
+    )
       .then((res) => {
         if (!res.ok) {
           throw new Error(`HTTP error! Status: ${res.status}`);
@@ -41,7 +51,7 @@ function AllUsers() {
       .finally(() => {
         setLoading(false);
       });
-  }, []);
+  }, [currentPage, usersPerPage]);
 
   function deleteUser(id) {
     axios
@@ -90,6 +100,10 @@ function AllUsers() {
     toast.success("Data exported successfully!");
   }
 
+  function handlePageChange(newPage) {
+    setCurrentPage(newPage);
+  }
+
   return (
     <div
       style={{ display: "flex", flexDirection: "column", minHeight: "100vh" }}
@@ -100,8 +114,8 @@ function AllUsers() {
           <p className="load">Loading...</p>
         ) : (
           <div className="container">
-            {userData.length > 0 ? (
-              userData.map((user) => (
+            {currentUsers.length > 0 ? (
+              currentUsers.map((user) => (
                 <div key={user.id} className="card">
                   <img
                     className="card-background"
@@ -141,6 +155,14 @@ function AllUsers() {
           </div>
         )}
       </div>
+      {!loading && !showOverlay && !showModal && currentUsers.length > 0 && (
+        <Pagination
+          currentPage={currentPage}
+          totalPages={totalPages}
+          handlePageChange={handlePageChange}
+        />
+      )}
+
       {showOverlay ? <Overlay /> : null}
       {showModal ? (
         <Modal

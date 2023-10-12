@@ -1,0 +1,16 @@
+/* PAGINATION COMPONENT */
+
+.pagination {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    margin-top:1rem;
+    margin-bottom: 2rem;
+}
+
+.pagination span {
+    font-size: 1.1rem;
+    font-weight: 600;
+    letter-spacing: 0.04rem;
+}
