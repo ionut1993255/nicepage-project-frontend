@@ -18,12 +18,9 @@ function AllUsers() {
   const [showModal, setShowModal] = useState(false);
   const [selectedUserId, setSelectedUserId] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
+  const [totalPages, setTotalPages] = useState(0);
 
   const usersPerPage = 8;
-  const indexOfLastUser = currentPage * usersPerPage;
-  const indexOfFirstUser = indexOfLastUser - usersPerPage;
-  const currentUsers = userData.slice(indexOfFirstUser, indexOfLastUser);
-  const totalPages = Math.ceil(userData.length / usersPerPage);
 
   useEffect(() => {
     fetch(
@@ -36,8 +33,9 @@ function AllUsers() {
         return res.json();
       })
       .then((data) => {
-        if (Array.isArray(data.users)) {
-          setUserData(data.users);
+        if (data.status === 200 && Array.isArray(data.users.data)) {
+          setUserData(data.users.data);
+          setTotalPages(data.users.last_page);
         } else {
           console.error(
             "Invalid data format! Expected an array but received:",
@@ -51,7 +49,7 @@ function AllUsers() {
       .finally(() => {
         setLoading(false);
       });
-  }, [currentPage, usersPerPage]);
+  }, [currentPage]);
 
   function deleteUser(id) {
     axios
@@ -114,8 +112,8 @@ function AllUsers() {
           <p className="load">Loading...</p>
         ) : (
           <div className="container">
-            {currentUsers.length > 0 ? (
-              currentUsers.map((user) => (
+            {userData.length > 0 ? (
+              userData.map((user) => (
                 <div key={user.id} className="card">
                   <img
                     className="card-background"
@@ -155,7 +153,7 @@ function AllUsers() {
           </div>
         )}
       </div>
-      {!loading && !showOverlay && !showModal && currentUsers.length > 0 && (
+      {!loading && !showOverlay && !showModal && userData.length > 0 && (
         <Pagination
           currentPage={currentPage}
           totalPages={totalPages}
