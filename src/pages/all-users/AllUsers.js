@@ -78,24 +78,42 @@ function AllUsers() {
       return;
     }
 
-    const header = ["Id", "Name", "Email", "Image", "Consent"];
-    const body = userData.map((user) => [
-      user.id,
-      user.name,
-      user.email,
-      `http://127.0.0.1:8000/storage/${user.image}`,
-      user.consent === 1 ? "True" : "False",
-    ]);
+    axios
+      .get("http://127.0.0.1:8000/api/users")
+      .then((res) => {
+        const allUserData = res.data.users.data;
 
-    downloadExcel({
-      fileName: "user_data",
-      sheet: "users",
-      tablePayload: {
-        header,
-        body,
-      },
-    });
-    toast.success("Data exported successfully!");
+        if (!Array.isArray(allUserData)) {
+          console.error(
+            "Invalid data format! Expected an array but received:",
+            res.data
+          );
+          return;
+        }
+
+        const header = ["Id", "Name", "Email", "Image", "Consent"];
+        const body = allUserData.map((user) => [
+          user.id,
+          user.name,
+          user.email,
+          `http://127.0.0.1:8000/storage/${user.image}`,
+          user.consent === 1 ? "True" : "False",
+        ]);
+
+        downloadExcel({
+          fileName: "user_data",
+          sheet: "users",
+          tablePayload: {
+            header,
+            body,
+          },
+        });
+        toast.success("Data exported successfully!");
+      })
+      .catch((error) => {
+        console.error("Error fetching all data:", error);
+        toast.error("Error exporting data! Please try again!");
+      });
   }
 
   function handlePageChange(newPage) {
