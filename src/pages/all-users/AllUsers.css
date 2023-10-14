@@ -1,16 +1,27 @@
 /* ALL USERS PAGE COMPONENT */
 
 .load {
-    font-weight: 600;
+    font-size: 1.2rem;
     color: #2f80ed;
-    letter-spacing: 0.04rem;
     text-align: left;
-    margin-left: 1.8rem; 
+    margin-left: 2rem; 
+}
+
+.noUserFoundMessageContainer {
+    justify-content: center;
+    min-height: 69vh;
 }
 
 .noUserFoundMessage {
-    text-align: center;
+    font-size: 1.8rem;
     color: red;
+    text-align: center;
+}
+
+.noUserFoundMessage,
+.load {
+    font-weight: 600;
+    letter-spacing: 0.04rem;
 }
 
 .container,
@@ -60,13 +71,19 @@
     transform: scale(1.3);
 }
 
+.usersPageHeader,
+.noUserFoundMessageContainer,
 .card-content,
-.usersPageHeader {
+.updateDeleteBtnContainer  {
     display:flex;
 }
 
+.noUserFoundMessageContainer, 
 .card-content {
     flex-direction: column;
+}
+
+.card-content {
     align-self: flex-end;
     padding: 2rem;
     background: linear-gradient(
@@ -116,17 +133,15 @@ p.card-description span {
     text-shadow: 0 0 0.2em #1366d6, 0 0 0.2em #1366d6;
 }
 
+.noUserFoundMessageContainer,
 .updateDeleteBtnContainer {
-    display: flex;
     align-items: center;
+}
+
+.updateDeleteBtnContainer {
     gap: 0.5rem;
     margin-top: 1rem;
     margin-bottom:0.5rem;
-}
-
-.noUserFoundMessage,
-.load {
-    font-size:1.2rem;
 }
 
 @media (max-width:1549px) {
@@ -144,6 +159,10 @@ p.card-description span {
         width: 450.63px;
         height: 400px;
         margin-bottom: 1.3em;
+    }
+
+    .noUserFoundMessageContainer {
+        min-height: 77vh;
     }
 
     .container {

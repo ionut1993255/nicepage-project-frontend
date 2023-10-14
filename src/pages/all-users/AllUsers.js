@@ -126,48 +126,51 @@ function AllUsers() {
     >
       <div style={{ flex: "1" }}>
         <UsersPageHeader handleDownloadExcel={handleDownloadExcel} />
+        {!loading && !showOverlay && !showModal && userData.length === 0 && (
+          <div className="noUserFoundMessageContainer">
+            <p className="noUserFoundMessage">
+              No user found! Maybe you would like to add one?
+            </p>
+          </div>
+        )}
         {loading ? (
           <p className="load">Loading...</p>
         ) : (
           <div className="container">
-            {userData.length > 0 ? (
-              userData.map((user) => (
-                <div key={user.id} className="card">
-                  <img
-                    className="card-background"
-                    src={`http://127.0.0.1:8000/storage/${user.image}`}
-                    alt="people"
-                  />
-                  <div className="card-content">
-                    <div className="card-content--container">
-                      <p className="card-description">
-                        Id: <span>{user.id}</span>
-                      </p>
-                      <p className="card-description">
-                        Name: <span>{user.name}</span>
-                      </p>
-                      <p className="card-description">
-                        Email: <span>{user.email}</span>
-                      </p>
-                      <p className="card-description">
-                        Consent:{" "}
-                        <span>{user.consent === 1 ? "True" : "False"}</span>
-                      </p>
-                      <div className="updateDeleteBtnContainer">
-                        <UpdateUserButton user={user} />
-                        <DeleteUserButton
-                          onClick={() => displayModalAndOverlay(user.id)}
-                        />
+            {userData.length > 0
+              ? userData.map((user) => (
+                  <div key={user.id} className="card">
+                    <img
+                      className="card-background"
+                      src={`http://127.0.0.1:8000/storage/${user.image}`}
+                      alt="people"
+                    />
+                    <div className="card-content">
+                      <div className="card-content--container">
+                        <p className="card-description">
+                          Id: <span>{user.id}</span>
+                        </p>
+                        <p className="card-description">
+                          Name: <span>{user.name}</span>
+                        </p>
+                        <p className="card-description">
+                          Email: <span>{user.email}</span>
+                        </p>
+                        <p className="card-description">
+                          Consent:{" "}
+                          <span>{user.consent === 1 ? "True" : "False"}</span>
+                        </p>
+                        <div className="updateDeleteBtnContainer">
+                          <UpdateUserButton user={user} />
+                          <DeleteUserButton
+                            onClick={() => displayModalAndOverlay(user.id)}
+                          />
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              ))
-            ) : (
-              <p className="noUserFoundMessage">
-                No user found! Maybe you would like to add one?
-              </p>
-            )}
+                ))
+              : null}
           </div>
         )}
       </div>
